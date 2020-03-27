@@ -13,6 +13,7 @@ const Login = props => {
     axios
       .post("http://localhost:3300/api/auth/login", login)
       .then(res => {
+        window.localStorage.setItem("token", res.data.token);
         setLogin({
           username: "",
           password: ""

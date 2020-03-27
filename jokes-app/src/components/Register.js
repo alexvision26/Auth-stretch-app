@@ -13,6 +13,7 @@ const Register = props => {
     axios
       .post("http://localhost:3300/api/auth/register", login)
       .then(res => {
+        console.log(res);
         setLogin({
           username: "",
           password: ""
