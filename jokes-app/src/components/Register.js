@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+
+import { useHistory } from "react-router-dom";
 import axios from "axios";
 
 const Register = props => {
@@ -7,6 +9,8 @@ const Register = props => {
     password: ""
   });
 
+  const history = useHistory();
+
   const handleSubmit = e => {
     e.preventDefault();
     console.log(login);
@@ -14,10 +18,12 @@ const Register = props => {
       .post("http://localhost:3300/api/auth/register", login)
       .then(res => {
         console.log(res);
+        props.setSuccess(res.data.message);
         setLogin({
           username: "",
           password: ""
         });
+        history.push("/login");
       })
       .catch(err => console.log(err));
   };
